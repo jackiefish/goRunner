@@ -41,7 +41,7 @@ type Config struct {
 		ReqHeaders       []string
 		SessionVar       []string
 		FuncVar          []string
-		//GrepVar          []string
+		GrepVar          []string
 	}
 	CommandSequence struct {
 		Sequence   string
@@ -75,7 +75,7 @@ func NewConfig(configFile string) *Config {
 	}
 	err2 := gcfg.ReadStringInto(toReturn, output)
 	if err2 != nil {
-		log.Fatalf("Failed to parse gcfg data: %s", err2)
+		log.Fatalf("Failed to parse gcfg data in file "+configFile+":", err2)
 	}
 
 	return toReturn

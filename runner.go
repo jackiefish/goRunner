@@ -256,7 +256,9 @@ func (runner *Runner) httpReq(inputLine string, config *Config, command string, 
 	requestType := config.FieldString("ReqType", command)
 
 	if !(strings.HasPrefix(urlx, "http://") || strings.HasPrefix(urlx, "https://")) {
-		urlx = baseUrl + urlx
+		if !(command == "getvideo" || command == "getthumb" || command == "getlargeimg") { // skip using baseUrl(api-lt.adpulse.cpm) as the hostname of media download requests
+			urlx = baseUrl + urlx
+		}
 	}
 
 	//findFuncVars will look for Func's
